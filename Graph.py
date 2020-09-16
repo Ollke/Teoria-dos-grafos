@@ -22,15 +22,26 @@ class graph():
 
     def ehCompleto(self):
         completo = True
-        x = len(self.vectors)-1
+        vectors = []
 
         for i in self.vectors:
-            y = len(i.getAjc())
-            if x != y:
-                completo = False
+            vectors.append(i.getVector())
+
+        for i in self.vectors:
+            y = i.getAjc()
+
+            for j in vectors:
+                if ((j in y) or (j == i.getVector())) :
+                    completo = True
+                else:
+                    completo = False
+                    break
+            if completo == False:
                 break
 
         return completo
+
+
 
 class vector():
 
@@ -48,3 +59,6 @@ class vector():
 
     def getAjc(self):
         return self.vectorAjc
+
+    def getVector(self):
+        return self.vector
