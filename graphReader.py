@@ -18,4 +18,5 @@ for i in graph:
 
     for j in graph[i]:
         print(f" {j}",end="")
-    print("")
+
+    print(f" ({len(graph[i])} vertice(s) adjacente(s))")
