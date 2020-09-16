@@ -17,9 +17,6 @@ class vector():
         self.vector = vector
         self.vectorAjc = adj
 
-    def addVectorAjc(self,adj):
-        self.vectorAjc.append(adj)
-
     def showVector(self):
         print(f"{self.vector}:", end="")
 
