@@ -1,6 +1,8 @@
+import Graph
+
 data = open("graph.txt","r")
 
-graph = {}
+graph = Graph.graph()
 
 for i in data:
     j = i.split()
@@ -9,14 +11,9 @@ for i in data:
     for r in range(1,len(j)):
         aux.append(j[r])
 
-    graph[j[0]] = aux
+    graph.addVector(j[0],aux)
 
 data.close()
 
-for i in graph:
-    print(f"{i}:",end="")
+graph.showVectors()
 
-    for j in graph[i]:
-        print(f" {j}",end="")
-
-    print(f" ({len(graph[i])} vertice(s) adjacente(s))")
