@@ -17,3 +17,6 @@ data.close()
 
 graph.showVectors()
 
+print(graph.ehRegular())
+print(graph.ehCompleto())
+
