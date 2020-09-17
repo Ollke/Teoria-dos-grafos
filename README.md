@@ -1,6 +1,7 @@
 # Teoria-dos-grafos
 Repositório para a matéria teoria dos grafos
 
+## Objetivo
 Algoritmo para a leitura de um grafo
 
 ## Tutorial 
