@@ -3,9 +3,6 @@ class graph():
     def __init__(self):
         self.vectors = []
 
-    def addVector(self,a,b):
-        self.vectors.append(vector(a,b))
-
     def showVectors(self):
         for i in self.vectors:
             i.showVector()
@@ -41,6 +38,19 @@ class graph():
 
         return completo
 
+    def read(self,arquivo):
+        data = open(arquivo, "r")
+
+        for i in data:
+            j = i.split()
+            aux = []
+
+            for r in range(1, len(j)):
+                aux.append(j[r])
+
+            self.vectors.append(vector(j[0], aux))
+
+        data.close()
 
 
 class vector():
