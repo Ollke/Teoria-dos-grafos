@@ -43,27 +43,36 @@ class graph():
 
         for i in data:
             j = i.split()
-            aux = []
+            adj = []
+            pesos = []
 
-            for r in range(1, len(j)):
-                aux.append(j[r])
+            for r in range(1, len(j),2):
+                adj.append(j[r])
+                pesos.append(j[r+1])
 
-            self.vectors.append(vector(j[0], aux))
+            self.vectors.append(vector(j[0], adj,pesos))
 
         data.close()
+
+        for i in self.vectors:
+            i.setArestas()
 
 
 class vector():
 
-    def __init__(self,vector,adj):
+    def __init__(self,vector,adj,pesos):
         self.vector = vector
         self.vectorAjc = adj
+        self.arestas = []
+        self.pesos = pesos
 
     def showVector(self):
         print(f"{self.vector}:", end="")
 
-        for j in self.vectorAjc:
-            print(f" {j}",end="")
+        for j in range(0,len(self.vectorAjc)):
+            print(f" {self.vectorAjc[j]}",end="")
+            print(f" peso: {self.pesos[j]}|",end="")
+
 
         print(f" ({len(self.vectorAjc)} vertice(s) adjacente(s))")
 
@@ -72,3 +81,18 @@ class vector():
 
     def getVector(self):
         return self.vector
+
+#wip
+    def setArestas(self):
+        for i in range(0,len(self.vectorAjc)):
+            self.arestas.append([self.vector,self.vectorAjc[i],self.pesos[i]])
+
+#wip
+    def showArestas(self):
+
+        print("Arestas =",end="")
+
+        for i in self.arestas:
+            print(f" [{i[0]},"+f"{i[1]}]"+f" peso: {i[2]}|",end="")
+
+        print("")
