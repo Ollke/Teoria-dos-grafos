@@ -1,16 +1,16 @@
 class graph():
 
     def __init__(self):
-        self.vectors = []
+        self.vertices = []
 
     def showVectors(self):
-        for i in self.vectors:
-            i.showVector()
+        for i in self.vertices:
+            i.showVertice()
 
     def ehRegular(self):
         regular = True
-        y = len(self.vectors[0].getAjc())
-        for i in self.vectors:
+        y = len(self.vertices[0].getAjc())
+        for i in self.vertices:
             x = len(i.getAjc())
             if x != y:
                 regular = False
@@ -19,16 +19,16 @@ class graph():
 
     def ehCompleto(self):
         completo = True
-        vectors = []
+        vertices = []
 
-        for i in self.vectors:
-            vectors.append(i.getVector())
+        for i in self.vertices:
+            vertices.append(i.getVertice())
 
-        for i in self.vectors:
+        for i in self.vertices:
             y = i.getAjc()
 
-            for j in vectors:
-                if ((j in y) or (j == i.getVector())) :
+            for j in vertices:
+                if ((j in y) or (j == i.getVertice())) :
                     completo = True
                 else:
                     completo = False
@@ -50,42 +50,42 @@ class graph():
                 adj.append(j[r])
                 pesos.append(j[r+1])
 
-            self.vectors.append(vector(j[0], adj,pesos))
+            self.vertices.append(vector(j[0], adj,pesos))
 
         data.close()
 
-        for i in self.vectors:
+        for i in self.vertices:
             i.setArestas()
 
 
 class vector():
 
-    def __init__(self,vector,adj,pesos):
-        self.vector = vector
-        self.vectorAjc = adj
+    def __init__(self,vertice,adj,pesos):
+        self.vertice = vertice
+        self.verticeAjc = adj
         self.arestas = []
         self.pesos = pesos
 
-    def showVector(self):
-        print(f"{self.vector}:", end="")
+    def showVertice(self):
+        print(f"{self.vertice}:", end="")
 
-        for j in range(0,len(self.vectorAjc)):
-            print(f" {self.vectorAjc[j]}",end="")
+        for j in range(0,len(self.verticeAjc)):
+            print(f" {self.verticeAjc[j]}",end="")
             print(f" peso: {self.pesos[j]}|",end="")
 
 
-        print(f" ({len(self.vectorAjc)} vertice(s) adjacente(s))")
+        print(f" ({len(self.verticeAjc)} vertice(s) adjacente(s))")
 
     def getAjc(self):
-        return self.vectorAjc
+        return self.verticeAjc
 
-    def getVector(self):
-        return self.vector
+    def getVertice(self):
+        return self.vertice
 
 #wip
     def setArestas(self):
-        for i in range(0,len(self.vectorAjc)):
-            self.arestas.append([self.vector,self.vectorAjc[i],self.pesos[i]])
+        for i in range(0,len(self.verticeAjc)):
+            self.arestas.append([self.vertice,self.verticeAjc[i],self.pesos[i]])
 
 #wip
     def showArestas(self):
