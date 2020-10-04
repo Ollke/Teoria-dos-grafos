@@ -1,22 +1,37 @@
 class graph():
 
     def __init__(self):
-        self.vertices = []
+        self.vertices = {}
+        self.grafo = {}
 
-    def showVectors(self):
-        for i in self.vertices:
-            i.showVertice()
+    def showGrafo(self):
 
+        for i in self.grafo.keys():
+
+            print(f"{i}: ",end='')
+
+            for j in self.grafo[i].keys():
+                print(f"{j} "+f"Peso {self.grafo[i][j]} |",end="")
+
+            print("")
+
+
+#wip
     def ehRegular(self):
         regular = True
         y = len(self.vertices[0].getAjc())
         for i in self.vertices:
             x = len(i.getAjc())
+
+            if i.getVertice() in i.getAjc():
+                x = x+1
+
             if x != y:
                 regular = False
                 break
         return regular
 
+#wip
     def ehCompleto(self):
         completo = True
         vertices = []
@@ -43,56 +58,51 @@ class graph():
 
         for i in data:
             j = i.split()
-            adj = []
-            pesos = []
+            adj = {}
 
             for r in range(1, len(j),2):
-                adj.append(j[r])
-                pesos.append(j[r+1])
+                adj[j[r]] = j[r+1]
 
-            self.vertices.append(vector(j[0], adj,pesos))
+            self.grafo[j[0]] = adj
 
         data.close()
 
         for i in self.vertices:
             i.setArestas()
 
+#WIP
+    def ehConexo(self):
+        loop = True
 
-class vector():
+        p = [self.vertices[0]]
+        visitados = [self.vertices[0].getVertice()]
+        nVisitados = []
 
-    def __init__(self,vertice,adj,pesos):
-        self.vertice = vertice
-        self.verticeAjc = adj
-        self.arestas = []
-        self.pesos = pesos
+        for j in self.vertices:
+            nVisitados.append(j)
 
-    def showVertice(self):
-        print(f"{self.vertice}:", end="")
+        while p != []:
 
-        for j in range(0,len(self.verticeAjc)):
-            print(f" {self.verticeAjc[j]}",end="")
-            print(f" peso: {self.pesos[j]}|",end="")
+            while nVisitados != []:
+                todosVisitados = len(p[len(p)-1].getAjc())
+
+                for i in p[len(p)-1].getAjc():
+                    todosVisitados = todosVisitados - 1
+
+                    if i not in visitados:
+                        visitados.append(i)
+
+                        for j in self.vertices:
+                            if j.getVertice() == i:
+                                p.append(j)
+
+                        break
 
 
-        print(f" ({len(self.verticeAjc)} vertice(s) adjacente(s))")
 
-    def getAjc(self):
-        return self.verticeAjc
+            p.pop()
 
-    def getVertice(self):
-        return self.vertice
+        return len(visitados) == len(self.vertices)
 
-#wip
-    def setArestas(self):
-        for i in range(0,len(self.verticeAjc)):
-            self.arestas.append([self.vertice,self.verticeAjc[i],self.pesos[i]])
 
-#wip
-    def showArestas(self):
 
-        print("Arestas =",end="")
-
-        for i in self.arestas:
-            print(f" [{i[0]},"+f"{i[1]}]"+f" peso: {i[2]}|",end="")
-
-        print("")
