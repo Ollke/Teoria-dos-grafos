@@ -85,40 +85,56 @@ class graph():
         for i in self.vertices:
             i.setArestas()
 
-#WIP
     def ehConexo(self):
-        loop = True
+        testes = []
 
-        p = [self.vertices[0]]
-        visitados = [self.vertices[0].getVertice()]
-        nVisitados = []
+        for z in range(0,len(self.grafo)):
+            vertices = []
+            fila = {}
 
-        for j in self.vertices:
-            nVisitados.append(j)
+            for i in self.grafo.keys():
+                vertices.append(i)
 
-        while p != []:
+            visitados = {vertices[z]:self.grafo[vertices[z]]}
+            fila = [vertices[z]]
 
-            while nVisitados != []:
-                todosVisitados = len(p[len(p)-1].getAjc())
+            while fila:
+                vertice = self.grafo[fila[0]]
 
-                for i in p[len(p)-1].getAjc():
-                    todosVisitados = todosVisitados - 1
-
+                for i in vertice.keys():
                     if i not in visitados:
-                        visitados.append(i)
+                        fila.append(i)
+                        visitados[i] = self.grafo[i]
 
-                        for j in self.vertices:
-                            if j.getVertice() == i:
-                                p.append(j)
+                    elif i in fila:
+                        vertice = self.grafo[i]
 
-                        break
+                del fila[0]
+
+            aux = []
+            for i in visitados.keys():
+                aux.append(i)
+            testes.append(aux)
+
+        conectado = []
+
+        for i in testes[0]:
+            conectado.append(i)
+
+        for i in range(0,len(testes)):
+            for j in conectado:
+                if j in testes[i]:
+                    for k in testes[i]:
+                        if k not in conectado:
+                            conectado.append(k)
+                    break
+
+        return len(conectado) == len(vertices)
 
 
 
-            p.pop()
-
-        return len(visitados) == len(self.vertices)
-
+        
+        
     def getAjc(self,vertice):
         vertices = []
 

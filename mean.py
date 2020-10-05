@@ -7,4 +7,8 @@ graph.read("graph.txt")
 graph.showGrafo()
 print(graph.ehRegular())
 print(graph.ehCompleto())
+print(graph.ehConexo())
+
+#insira o vertice
 graph.getAjc("101")
+
