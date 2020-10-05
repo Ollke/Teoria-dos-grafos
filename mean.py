@@ -10,5 +10,4 @@ print(graph.ehCompleto())
 print(graph.ehConexo())
 
 #insira o vertice
-graph.getAjc("101")
-
+graph.getAdj("101")

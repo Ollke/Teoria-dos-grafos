@@ -13,7 +13,7 @@ class graph():
             for j in self.grafo[i].keys():
                 print(f" {j} "+f"Peso:{self.grafo[i][j]}|",end="")
 
-            print("")
+            print(f"({len(self.grafo[i])} vertices adjacentes)")
 
 
 
@@ -135,7 +135,7 @@ class graph():
 
         
         
-    def getAjc(self,vertice):
+    def getAdj(self,vertice):
         vertices = []
 
         for i in self.grafo.keys():
@@ -147,10 +147,10 @@ class graph():
             for j in self.grafo[vertice].keys():
                 print(f" {j} " + f"Peso:{self.grafo[vertice][j]}|", end="")
 
-            print("\n")
+            print(f"({len(self.grafo[vertice])} vertices adjacentes)")
 
         else:
-            print("O vertice não esta no vetor\n")
+            print("O vertice não esta no vetor")
 
 
 
