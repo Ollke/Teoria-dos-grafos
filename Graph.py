@@ -90,7 +90,6 @@ class graph():
 
         for z in range(0,len(self.grafo)):
             vertices = []
-            fila = {}
 
             for i in self.grafo.keys():
                 vertices.append(i)
@@ -142,16 +141,14 @@ class graph():
             vertices.append(i)
 
         if vertice in vertices:
-            print(f"{vertice}:", end='')
-
-            for j in self.grafo[vertice].keys():
-                print(f" {j} " + f"Peso:{self.grafo[vertice][j]}|", end="")
-
-            print(f"({len(self.grafo[vertice])} vertices adjacentes)")
+            return self.grafo[vertice]
 
         else:
             print("O vertice não esta no vetor")
 
+    def dijkstra(self,origem,fim):
+        print()
 
-
-
+    def dijkstraAll(self,origem):
+        for i in self.grafo.keys():
+            self.dijkstra(origem=origem,fim=i)
