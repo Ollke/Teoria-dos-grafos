@@ -76,14 +76,11 @@ class graph():
             adj = {}
 
             for r in range(1, len(j),2):
-                adj[j[r]] = j[r+1]
+                adj[j[r]] = int(j[r+1])
 
             self.grafo[j[0]] = adj
 
         data.close()
-
-        for i in self.vertices:
-            i.setArestas()
 
     def ehConexo(self):
         testes = []
@@ -147,7 +144,15 @@ class graph():
             print("O vertice não esta no vetor")
 
     def dijkstra(self,origem,fim):
-        print()
+        if origem==fim and origem not in self.grafo[origem].keys():
+            print(f"A menor destancia de {origem} " + f"até {fim} é 0")
+
+        else:
+
+
+
+
+            print(f"A menor destancia de {origem} "+f"até {fim} é "+f"")
 
     def dijkstraAll(self,origem):
         for i in self.grafo.keys():

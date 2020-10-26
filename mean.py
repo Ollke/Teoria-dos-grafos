@@ -11,3 +11,5 @@ print(graph.ehConexo())
 
 #insira o vertice
 print(graph.getAdj("101"))
+
+graph.dijkstra("101","101")
