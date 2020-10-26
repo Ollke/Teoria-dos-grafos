@@ -144,10 +144,20 @@ class graph():
             print("O vertice não esta no vetor")
 
     def dijkstra(self,origem,fim):
-        if origem==fim and origem not in self.grafo[origem].keys():
+        if origem==fim:
             print(f"A menor destancia de {origem} " + f"até {fim} é 0")
 
+        elif origem not in self.grafo.keys():
+            print(f"O vertice {origem} não existe nesse grafo")
+
+        elif fim not in self.grafo.keys():
+            print(f"O vertice {fim} não existe nesse grafo")
+
         else:
+            distancias = {}
+
+            for i in self.grafo.keys():
+                distancias[i] = float("inf")
 
 
 
@@ -155,5 +165,10 @@ class graph():
             print(f"A menor destancia de {origem} "+f"até {fim} é "+f"")
 
     def dijkstraAll(self,origem):
-        for i in self.grafo.keys():
-            self.dijkstra(origem=origem,fim=i)
+
+        if origem not in self.grafo.keys():
+            print(f"O vertice {origem} não existe nesse grafo")
+
+        else:
+            for z in self.grafo.keys():
+                self.dijkstra(origem=origem,fim=z)
